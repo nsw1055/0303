@@ -53,7 +53,6 @@ HikariCP git 주소: https://github.com/brettwooldridge/HikariCP
 	
 	}
 	```
--Junit test
 	```
 	@RunWith(SpringJUnit4ClassRunner.class)
 	@ContextConfiguration("file:src/main/webapp/WEB-INF/spring/root-context.xml")

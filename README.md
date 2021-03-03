@@ -121,7 +121,6 @@ doA()와 doB()의 타입이 다를때는 인터페이스를 사용해서 해결�
 예를 들어 스타워즈로 비유해보자 등장인물이 나올때 등장인물에 맞는 테마곡이 나온다
 그럼 우리가 타입에 상관없이 등장인물이 나오면 테마곡이 나오게 만들어 보자
 
-BGM.java(interface)
 ```
 @Target(value={ElementType.CONSTRUCTOR,ElementType.METHOD,ElementType.TYPE})
 @Retention(value=RetentionPolicy.RUNTIME)

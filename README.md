@@ -74,7 +74,7 @@ HikariCP git 주소: https://github.com/brettwooldridge/HikariCP
 	```
 5. mapper.xml생성
 src/main/resources에 패키지에 맞춰 mapper.xml을 생성한다
-(이름을 패키지에 맞추지 않으면 에러가 발생한다.)
+(이름을 맞추지 않으면 에러가 발생한다.)
 	```
 	<?xml version="1.0" encoding="UTF-8" ?>
 	<!DOCTYPE mapper

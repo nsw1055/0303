@@ -72,7 +72,22 @@ HikariCP git 주소: https://github.com/brettwooldridge/HikariCP
 		
 	}
 	```
-5. HomeController에 주입 / 확인
+5. mapper.xml생성
+src/main/resources에 패키지에 맞춰 mapper.xml을 생성한다
+(이름을 패키지에 맞추지 않으면 에러가 발생한다.)
+	```
+	<?xml version="1.0" encoding="UTF-8" ?>
+	<!DOCTYPE mapper
+ 	 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+	<mapper namespace="org.zerock.mapper.TimeMapper">
+		<select id = "getTime2" resultType="String">
+			select now()
+		</select>
+	</mapper>
+	```
+
+6. HomeController에 주입 / 확인
 
   <br>
   <br>
@@ -100,6 +115,7 @@ HikariCP git 주소: https://github.com/brettwooldridge/HikariCP
 			http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd">
 	
 	```  
+
 <br>
 <br>  
 * Annotation (@)

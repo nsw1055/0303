@@ -43,7 +43,7 @@ HikariCP git 주소: https://github.com/brettwooldridge/HikariCP
 3. Spring 이용해서 확인
 
 4. DAO제작
--테스트(Junit)
+-TimeMapper.java
 
 	```
 	public interface TimeMapper {
@@ -53,7 +53,26 @@ HikariCP git 주소: https://github.com/brettwooldridge/HikariCP
 	
 	}
 	```
-
+-Junit test
+	```
+	@RunWith(SpringJUnit4ClassRunner.class)
+	@ContextConfiguration("file:src/main/webapp/WEB-INF/spring/root-context.xml")
+	@Log4j
+	public class TimeMapperTests {
+	
+		@Autowired
+		TimeMapper timeMapper;
+		
+		@Test
+		public void testTime() {
+			log.info(timeMapper);
+		
+			log.info(timeMapper.getTime());
+		}
+	
+		
+	}
+	```
 5. HomeController에 주입 / 확인
 
 

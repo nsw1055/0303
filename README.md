@@ -74,7 +74,8 @@ HikariCP git 주소: https://github.com/brettwooldridge/HikariCP
 	```
 5. HomeController에 주입 / 확인
 
-
+  <br>
+  <br>
 * Mybatis(미니멈) 셋팅
 
 1. maven 추가<br>
@@ -98,7 +99,9 @@ HikariCP git 주소: https://github.com/brettwooldridge/HikariCP
 			http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
 			http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd">
 	
-	```
+	```  
+<br>
+<br>  
 * Annotation (@)
 
 html의 경우 정해져 있는 속성만 존재했었다 하지만 추가적인 속성을 넣기위해 "data-XXX"라는 속성을 만들었다.

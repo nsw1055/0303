@@ -3,7 +3,7 @@ spring 2일차
 * 화면에 DataBase의 시간을 표출해 본다 
 1. 순수 JDBC 연결 확인
 
-`		
+	
 //		JDBC 드라이버 확인
 
 		Class.forName("com.mysql.cj.jdbc.Driver");
@@ -20,8 +20,8 @@ spring 2일차
 		
 		log.info(con);
 		
-		con.close();`
-2. HikariCP 세팅 - root-context.xml 혹은 Java설정
+		con.close();
+2. HikariCP 세팅 - root-context.xml 혹은 Java설정<br>
 
 <!-- Root Context: defines shared resources visible to all other web components -->
 	<bean id="hikariConfig" class="com.zaxxer.hikari.HikariConfig">
@@ -49,13 +49,12 @@ HikariCP git 주소: https://github.com/brettwooldridge/HikariCP
 
 Mybatis(미니멈) 셋팅
 
-1. maven 추가
-	(1) https://mvnrepository.com/artifact/org.mybatis/mybatis
-	(2) https://mvnrepository.com/artifact/org.mybatis/mybatis-spring
+1. maven 추가<br>
+	(1) https://mvnrepository.com/artifact/org.mybatis/mybatis <br>
+	(2) https://mvnrepository.com/artifact/org.mybatis/mybatis-spring<br>
 2. root-context.xml 라이브러리 추가
-
-	<!-- sql 라이브러리 -->
 	<bean id="sqlSessionFactory"
 		class="org.mybatis.spring.SqlSessionFactoryBean">
 		<property name="dataSource" ref="dataSource"></property>
 	</bean>
+3. 

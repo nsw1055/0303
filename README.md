@@ -23,6 +23,19 @@ spring 2일차
 		con.close();`
 2. HikariCP 세팅 - root-context.xml 혹은 Java설정
 
+<!-- Root Context: defines shared resources visible to all other web components -->
+	<bean id="hikariConfig" class="com.zaxxer.hikari.HikariConfig">
+		<property name="driverClassName" value="com.mysql.cj.jdbc.Drive"></property>
+		<property name="jdbcUrl" value="jdbc:mysql://localhost:3306/dclass?serverTimezone=UTC"></property>
+		<property name="username" value="springuser"></property>
+		<property name="password" value="springuser"></property>
+	</bean>
+
+	<!-- HikariCP configuration -->
+	<bean id="dataSource" class="com.zaxxer.hikari.HikariDataSource"
+		destroy-method="close">
+		<constructor-arg ref="hikariConfig" />  
+	</bean>	
 HikariCP git 주소: https://github.com/brettwooldridge/HikariCP
 
 3. Spring 이용해서 확인
@@ -34,6 +47,15 @@ HikariCP git 주소: https://github.com/brettwooldridge/HikariCP
 5. HomeController에 주입 / 확인
 
 
-마이바티즈(미니멈) 셋팅
+Mybatis(미니멈) 셋팅
 
+1. maven 추가
+	(1) https://mvnrepository.com/artifact/org.mybatis/mybatis
+	(2) https://mvnrepository.com/artifact/org.mybatis/mybatis-spring
+2. root-context.xml 라이브러리 추가
 
+	<!-- sql 라이브러리 -->
+	<bean id="sqlSessionFactory"
+		class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="dataSource" ref="dataSource"></property>
+	</bean>

@@ -75,7 +75,7 @@ HikariCP git 주소: https://github.com/brettwooldridge/HikariCP
 5. HomeController에 주입 / 확인
 
 
-Mybatis(미니멈) 셋팅
+* Mybatis(미니멈) 셋팅
 
 1. maven 추가<br>
 	(1) https://mvnrepository.com/artifact/org.mybatis/mybatis <br>
@@ -99,3 +99,96 @@ Mybatis(미니멈) 셋팅
 			http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd">
 	
 	```
+* Annotation (@)
+
+html의 경우 정해져 있는 속성만 존재했었다 하지만 추가적인 속성을 넣기위해 "data-XXX"라는 속성을 만들었다.
+java에서도 비슷한 경우가 있는데
+java는 객체를 DB로 옮길경우 회원을 만들때 "Member" class를 생성  
+```
+	String id, pw;  
+	Data birth;  
+```
+DB의 테이블을 만들때는 cloumn 단위가 varchar2(50)등을 사용하기때문에 단위가 다른것을 알 수 있다.
+
+단위를 다른데 어떻게 객체를 옮길 수 있을까? 에서 나온것이 Annotation이다.(기존에는 XML로 옮겼으나 코드가 복잡해짐)
+
+doA()와 doB()의 타입이 다를때는 인터페이스를 사용해서 해결했다.
+하지만 doA에 메서드가 있을때는 인터페이스에 dummy메서드를 생성하여 타입을 맞춰 주어야 했다.
+그래서 타입에 사로잡혀있었는데 이것을 어노테이션이 무너뜨렸다.
+
+그럼 어떻게 타입을 무너뜨렸을까?
+
+예를 들어 스타워즈로 비유해보자 등장인물이 나올때 등장인물에 맞는 테마곡이 나온다
+그럼 우리가 타입에 상관없이 등장인물이 나오면 테마곡이 나오게 만들어 보자
+
+BGM.java(interface)
+```
+@Target(value={ElementType.CONSTRUCTOR,ElementType.METHOD,ElementType.TYPE})
+@Retention(value=RetentionPolicy.RUNTIME)
+public @interface BGM{
+
+	
+}
+
+```
+
+```
+@BGM(song = "Love Them")
+public class Luke {
+
+	//Force를 사용할때는 밑의 테마곡을 사용한다.
+	@BGM(song = "Come and Get your Love" )
+	public void use Force(){
+		System.out.println("");
+	}
+}
+```
+
+
+```
+@BGM(song = "Emperial Match")
+public class Vader {
+
+	public void use Force(){
+		System.out.prinln("");
+	}
+}
+```
+
+```
+public class Main{
+
+	public static void main(String[] args) {
+		Vader p1 = new Vader();
+		
+		Class clz = p1.getClass();
+		
+		BGM bgm = (BGM) clz.getAnnotation(BGM.class);
+		
+		Sysyem.out.println(bgm.song());
+	}
+
+}
+```
+
+```
+public class Main{
+
+	public static void main(String[] args) throws Exception {
+		
+		Scanner scanner = new Scanner(System.in);
+		
+		Class clz = Class.forName(scanner.nextLine());
+		
+		Object obj = clz.newInstance();
+		
+		BGM bgm = (BGM) clz.getAnnotation(BGM.class);
+		
+		Sysyem.out.println(bgm.song());
+	}
+}
+```
+Luke와 Vader은 타입이 다르지만 어노테이션을 사용하여 타입을 비슷하게 만들어 사용하였다.
+
+따라서 어노테이션은 인터페이스를 파괴한다.
+어노테이션을 사용하면 인터페이스처럼 타입이 정해진 방식이 아니게 되며 이것을 사용한 것이 spring이다.
